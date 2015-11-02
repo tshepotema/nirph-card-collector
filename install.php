@@ -47,7 +47,7 @@ INSERT INTO `products` (`product_id`, `product_name`, `price`, `downloads`, `des
 SQL;
 		$conn->query($sql);
 
-		$sql = <<<SQL
+    $sql = <<<SQL
 CREATE TABLE IF NOT EXISTS `subscriptions` (
   `subscription_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -56,9 +56,18 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
   PRIMARY KEY (`subscription_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 SQL;
-		$conn->query($sql);
+    $conn->query($sql);
 
-
+    $sql = <<<SQL
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(64) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+SQL;
+    $conn->query($sql);
 
 	} else {
 		echo "Failed to swith to the database [".$database."]  <br>";
